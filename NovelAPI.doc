@@ -1,0 +1,383 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:w="urn:schemas-microsoft-com:office:word"
+    xmlns="http://www.w3.org/TR/REC-html40">
+    <head><meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <style type="text/css">
+        table  
+        {  
+            border-collapse: collapse;
+            border: none;  
+            width: 100%;  
+        }  
+        td,tr  
+        {  
+            border: solid #CCC 1px;
+            padding:3px;
+            font-size:9pt;
+        } 
+        .codestyle{
+            word-break: break-all;
+            mso-highlight:rgb(252, 252, 252);
+            padding-left: 5px; background-color: rgb(252, 252, 252); border: 1px solid rgb(225, 225, 232);
+        }
+        img {
+            width:100;
+        }
+    </style>
+    <meta name=ProgId content=Word.Document>
+    <meta name=Generator content="Microsoft Word 11">
+    <meta name=Originator content="Microsoft Word 11">
+    <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+    <body><h1>1、获取小说</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取小说接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://118.190.235.43:8000/api/novels/</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+<th>参数示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">search</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>筛选条件</td>
+<td>双城七月</td>
+</tr>
+<tr>
+<td style="text-align: left;">ordering</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>排序条件</td>
+<td>views</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "name": "双城七月",
+            "author": "莫真",
+            "icon": "http://118.190.235.43:8000/media/icon/%E5%8F%8C%E5%9F%8E%E4%B8%83%E6%9C%88.jpg",
+            "views": 0,
+            "brand": "人生百态",
+            "status": "连载中",
+            "chapters": [
+                {
+                    "id": 1,
+                    "title": "第一章 “战前”准备",
+                    "create_time": "2020-05-10T11:19:56.642287",
+                    "contents": "章节内容。。。"
+                },
+                {
+                    "id": 2,
+                    "title": "第二章 圣女的梦想",
+                    "create_time": "2020-05-10T11:21:51.328392",
+                    "contents": "章节内容。。。"
+                }
+            ]
+   }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">next</td>
+<td style="text-align: left;">string</td>
+<td>下一页链接</td>
+</tr>
+<tr>
+<td style="text-align: left;">previous</td>
+<td style="text-align: left;">string</td>
+<td>上一页链接</td>
+</tr>
+<tr>
+<td style="text-align: left;">results</td>
+<td style="text-align: left;">list</td>
+<td>小说列表</td>
+</tr>
+<tr>
+<td style="text-align: left;">chapters</td>
+<td style="text-align: left;">list</td>
+<td>小说章节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>2、分类获取小说</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>分类获取小说接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://118.190.235.43:8000/api/brand/novels/</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+<th>参数示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">search</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>小说类别</td>
+<td>人生百态</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "name": "人生百态",
+            "novels": [
+                {
+                    "id": 1,
+                    "name": "双城七月",
+                    "author": "莫真",
+                    "icon": "http://118.190.235.43:8000/media/icon/%E5%8F%8C%E5%9F%8E%E4%B8%83%E6%9C%88.jpg",
+                    "views": 0,
+                    "brand": "人生百态",
+                    "status": "连载中",
+                    "chapters": [
+                        {
+                            "id": 1,
+                            "title": "第一章 “战前”准备",
+                            "create_time": "2020-05-10T11:19:56.642287",
+                            "contents": "章节内容"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">next</td>
+<td style="text-align: left;">string</td>
+<td>下一页链接</td>
+</tr>
+<tr>
+<td style="text-align: left;">previous</td>
+<td style="text-align: left;">string</td>
+<td>上一页链接</td>
+</tr>
+<tr>
+<td style="text-align: left;">results</td>
+<td style="text-align: left;">list</td>
+<td>小说类别列表</td>
+</tr>
+<tr>
+<td style="text-align: left;">novels</td>
+<td style="text-align: left;">list</td>
+<td>当前分类下小说列表</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h1>3、获取单个小说</h1><div style="margin-left:20px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取单个小说接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://118.190.235.43:8000/api/novel/1</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<p>无</p>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 1,
+    "name": "双城七月",
+    "author": "莫真",
+    "icon": "http://118.190.235.43:8000/media/icon/%E5%8F%8C%E5%9F%8E%E4%B8%83%E6%9C%88.jpg",
+    "views": 0,
+    "brand": "人生百态",
+    "status": "连载中",
+    "chapters": [
+        {
+            "id": 1,
+            "title": "第一章 “战前”准备",
+            "create_time": "2020-05-10T11:19:56.642287",
+            "contents": "..."
+        },</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>小说id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>小说名</td>
+</tr>
+<tr>
+<td style="text-align: left;">author</td>
+<td style="text-align: left;">string</td>
+<td>作者</td>
+</tr>
+<tr>
+<td style="text-align: left;">icon</td>
+<td style="text-align: left;">string</td>
+<td>小说封面链接</td>
+</tr>
+<tr>
+<td style="text-align: left;">views</td>
+<td style="text-align: left;">int</td>
+<td>浏览量</td>
+</tr>
+<tr>
+<td style="text-align: left;">brand</td>
+<td style="text-align: left;">string</td>
+<td>小说类型</td>
+</tr>
+<tr>
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">string</td>
+<td>小说状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">chapters</td>
+<td style="text-align: left;">list</td>
+<td>小说章节</td>
+</tr>
+</tbody>
+</table></div><h1>4、章节内容获取</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>章节内容获取接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://118.190.235.43:8000/api/chapter/1</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<p>无</p>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "count": 2,
+    "next": "http://127.0.0.1:8000/api/chapter/1?page=2",
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "title": "第一章 “战前”准备",
+            "create_time": "2020-05-10T11:19:56.642287",
+            "contents": "..."
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">int</td>
+<td>章节数</td>
+</tr>
+<tr>
+<td style="text-align: left;">next</td>
+<td style="text-align: left;">string</td>
+<td>下一章</td>
+</tr>
+<tr>
+<td style="text-align: left;">previous</td>
+<td style="text-align: left;">string</td>
+<td>上一章</td>
+</tr>
+<tr>
+<td style="text-align: left;">results</td>
+<td style="text-align: left;">list</td>
+<td>章节内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<p>欢迎使用ShowDoc！</p></div></body></html>
