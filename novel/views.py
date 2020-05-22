@@ -8,8 +8,6 @@ from utils.response import APIResponse
 
 
 # 小说群查接口
-
-
 class NovelListAPI(ListAPIView):
     queryset = models.Novel.objects.all()
     serializer_class = serializers.NovelModelSerializer
@@ -41,6 +39,15 @@ class BrandListAPI(ListAPIView):
 class NovelAPIView(RetrieveAPIView):
     queryset = models.Novel.objects.all()
     serializer_class = serializers.NovelModelSerializer
+
+    # 重写get方法，实现增加点击量
+    def get(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        novel = models.Novel.objects.get(pk=pk)
+        views = novel.views + 1
+        novel.views = views
+        novel.save()
+        return self.retrieve(request, *args, **kwargs)
 
 
 # 查看小说内容接口
