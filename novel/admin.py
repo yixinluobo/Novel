@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-
-from novel.models import Novel, Chapter, Brand, User
+from novel.models import Novel, Chapter, Brand
+from user.models import User
 
 
 class MyUserAdmin(UserAdmin):
