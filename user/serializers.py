@@ -1,15 +1,11 @@
-import re
-
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
-
 from user import models
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
-        field = ['username', 'password', 'email', 'mobile']
+        fields = '__all__'
         extra_kwargs = {
             'password': {
                 'write_only': True,
@@ -27,20 +23,29 @@ class UserSerializer(serializers.ModelSerializer):
                 'error_messages': {
                     'required': '必填项',
                 }
-            }
+            },
+            'is_superuser': {
+                'write_only': True,
+            },
+            'is_staff': {
+                'write_only': True,
+            },
+            'is_active': {
+                'write_only': True,
+            },
+            'first_name': {
+                'write_only': True,
+            },
+            'last_name': {
+                'write_only': True,
+            },
+            'date_joined': {
+                'write_only': True,
+            },
+            'groups': {
+                'write_only': True,
+            },
+            'user_permissions': {
+                'write_only': True,
+            },
         }
-
-    def validate_username(self, value):
-        '''验证用户名是否存在'''
-        user = models.User.objects.get(username=value)
-        if user is not None:
-            raise ValidationError("该用户名已存在")
-        return value
-
-    def validate_email(self, value):
-        '''验证邮箱格式'''
-        is_vali_email = re.compile('\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}')
-        if is_vali_email.match(value):
-            return value
-        raise ValidationError('邮箱格式不正确')
-
