@@ -5,10 +5,12 @@ from novel import models
 from rest_framework.filters import SearchFilter, OrderingFilter
 from utils import pangenations, throttles
 from utils.response import APIResponse
+from rest_framework_extensions.cache.decorators import cache_response
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 
 # 小说群查接口
-class NovelListAPI(ListAPIView):
+class NovelListAPI(CacheResponseMixin, ListAPIView):  # 继承CacheResponseMixin实现缓存，且此类必须放在第一继承位
     queryset = models.Novel.objects.all()
     serializer_class = serializers.NovelModelSerializer
 
@@ -21,7 +23,7 @@ class NovelListAPI(ListAPIView):
 
 
 # 分类小说接口
-class BrandListAPI(ListAPIView):
+class BrandListAPI(CacheResponseMixin, ListAPIView):
     # 访问频率限制
     throttle_classes = [throttles.SMSRateThrottle]
 
@@ -36,7 +38,7 @@ class BrandListAPI(ListAPIView):
 
 
 # 小说单查接口
-class NovelAPIView(RetrieveAPIView):
+class NovelAPIView(CacheResponseMixin, RetrieveAPIView):
     queryset = models.Novel.objects.all()
     serializer_class = serializers.NovelModelSerializer
 
@@ -52,6 +54,7 @@ class NovelAPIView(RetrieveAPIView):
 
 # 查看小说内容接口
 class ChapterListAPIView(APIView):
+    @cache_response()  # 针对非viewSet类使用此装饰器进行缓存
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         chapters = models.Chapter.objects.filter(novel=pk)

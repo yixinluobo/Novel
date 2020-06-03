@@ -148,6 +148,22 @@ REST_FRAMEWORK = {
     ),
 }
 
+REST_FRAMEWORK_EXTENSIONS = {
+    # 缓存时间配置
+    'DEFAULT_CACHE_RESPONSE_TIMEOUT': 24 * 60 * 60,
+}
+
+# redis配置
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+
+        }
+    }
+}
+
 # JWT_EXPIRATION_DELTA 指明token的有效期
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
